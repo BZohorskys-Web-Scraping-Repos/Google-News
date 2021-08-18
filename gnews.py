@@ -2,11 +2,16 @@ import requests
 import sys
 import webbrowser
 import logging
+import textwrap
+import os
+
 from lxml import etree
 from requests.models import parse_header_links
 
 SITE = 'https://news.google.com'
 TOPSTORIES = 'https://news.google.com/topstories'
+TAB = '  '
+TERMINAL_WIDTH = os.get_terminal_size().columns if os.get_terminal_size().columns < 80 else 80
 
 logging.basicConfig(
     level=logging.WARNING,
@@ -23,8 +28,8 @@ def main():
         for element in data:
             if element.tag == 'h2':
                 title = ''.join(element.xpath('.//text()'))
-                print(title)
-                print('=' * len(title))
+                print(title.center(TERMINAL_WIDTH, ' '))
+                print('=' * TERMINAL_WIDTH)
             else:
                 main_article_link = SITE + ''.join(element.xpath('./div/div/a/@href'))[1:]
                 article_header = ''.join(element.xpath('./div/div/article/h3/descendant-or-self::*/text()')).encode('latin1').decode('utf-8')
@@ -32,7 +37,7 @@ def main():
                 publish_time = ''.join(element.xpath('./div/div/article/div/div/time/text()'))
                 print(article_header)
                 print(main_article_link)
-                print(f'{publisher}: {publish_time}')
+                print(f'{TAB}{publisher}: {publish_time}')
                 print()
                 user_response = input("Continue, Open, or Quit? (ENTER/o/q)")
                 print()
@@ -98,8 +103,8 @@ def get_news_articles(url):
         title = data.xpath('.//h2/text()')[0]
         articles = data.xpath('.//main//main/div/div')
 
-        print(title)
-        print('=' * len(title))
+        print(title.center(TERMINAL_WIDTH, ' '))
+        print('=' * TERMINAL_WIDTH)
 
         loop = 0
         for article in articles:
@@ -130,7 +135,7 @@ def get_news_articles(url):
 
 def print_publishers_and_times(publishers, publish_times):
     for idx in range(len(publishers)):
-        print(f'{publishers[idx]}: {publish_times[idx]}')
+        print(f'{TAB}{publishers[idx]}: {publish_times[idx]}')
 
 if __name__ == '__main__':
     main()
