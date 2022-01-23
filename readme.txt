@@ -20,25 +20,8 @@ Run Project
 -----------
     Activate virtual environment
     In the root directory:
-        python gnews.py
+        python launcher.py
 
-
-Build Project
+Distribute Project
 -------------
-    Dev Test
-    ++++++++
-        Activate virtual environment
-        Run setup.py
-            > python setup.py develop
-        An egg directory should have been created
-        Test Tool
-            > gnews
-
-    Create .tar.gz file which can be install with pip
-    +++++++++++++++++++++++++++++++++++++++++++++++++
-        Activate virtual environment
-        Run setup.py
-            > python setup.py sdist bdist_wheel
-        Test Tool
-            Deactivate virtualenv
-            pip install <path to .tar.gz file in dist dir>
+    pyinstaller launcher.py --name gnews --onefile
