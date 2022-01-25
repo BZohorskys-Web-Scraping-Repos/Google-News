@@ -163,7 +163,7 @@ def get_headlines(html):
                 'publishers': None
             }
             articleDict['link'] = SITE + ''.join(element.xpath('./div/div/a/@href'))[1:]
-            articleDict['header'] = ''.join(element.xpath('./div/div/article/h3/descendant-or-self::*/text()')).encode('latin1').decode('utf-8')
+            articleDict['header'] = ''.join(element.xpath('./div/div/article/h3/descendant-or-self::*/text()'))
             articleDict['publishers'] = ''.join(element.xpath('./div/div/article/div/div/a/text()'))
             articleDict['publicationTimes'] = ''.join(element.xpath('./div/div/article/div/div/time/text()'))
             headlines.append(articleDict)
