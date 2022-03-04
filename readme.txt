@@ -1,27 +1,103 @@
-README
-======
-Key:
-    '>' = terminal command
+= README
 
-Getting Started
----------------
-    Setup virtual environment
-    +++++++++++++++++++++++++
-        Move to the top directory
-            > cd <to the root project folder>
-        Create virtualenv
-            > python3 -m venv virtualenv
-        Activate virtual environment
-            > source virtualenv/bin/activate
-        Install project dependencies
-            > pip install -r requirements.txt
+This cli app allows a user to quickly read through top articles on news.google.com
 
-Run Project
------------
-    Activate virtual environment
-    In the root directory:
-        python launcher.py
+== Getting Started
 
-Distribute Project
--------------
-    pyinstaller launcher.py --name gnews --onefile
+=== Retrieve the Code
+
+You can either clone the codebase or download it directly, I suggest downloading a release.
+
+==== Cloning
+
+. Download and install Git link:https://git-scm.com/downloads[here] if Git is not installed
+. Choose a method of cloning using github's documentation link:https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls[here]
+
+.Code Snippet
+[source]
+----
+git clone git@github.com:BZohorskys-Web-Scraping-Repos/google-news.git
+----
+
+==== Downloading
+
+When downloading you can either download a zip folder of a specific branch of the codebase or download a release provided on github. A link to download the master branch of the codebase can be found link:https://github.com/BZohorskys-Web-Scraping-Repos/Google-News/archive/refs/heads/master.zip[here]. However, I'd suggest downloading a release as those will be more stable. 
+
+=== Setup a Virtual Environment
+
+. Download and install Python link:https://www.python.org/downloads/[here] if Python is not installed
+. Move to the project's top directory
+. Create a virtual environment
+. Activate the virtual environment
+. Install project dependencies
+
+.Code Snippet
+[source]
+----
+cd <to the project's top level directory>
+python3 -m venv virtualenv
+source virtualenv/bin/activate
+pip install -r requirements.txt
+----
+
+== Run Project
+
+. Move to the project's top level directory
+. Activate virtual environment
+. Execute Code
+
+.Code Snippet (Linux & MacOS)
+[source]
+----
+cd <to the project's top level directory>
+source virtualenv/bin/activate
+python launcher.py
+----
+
+.Code Snippet (Windows)
+[source]
+----
+cd <to the project's top level directory>
+.\virtualenv\Scripts\activate.bat
+python launcher.py
+----
+
+== Project Distribution
+
+This section describes how to create a binary to distribute to others. Note, this binary will be OS dependent (Windows/Linux/MacOS) meaning only users sharing the same type of OS can share binaries.
+
+. Move to the project's top directory
+. Activate virtual environment
+. Create a binary called "gnews" located in the dist directory
+
+.Code Snippet (Linux & MacOS)
+[source]
+----
+cd <to the project's top level directory>
+source virtualenv/bin/activate
+pyinstaller gnews.spec
+----
+
+.Code Snippet (Windows)
+[source]
+----
+cd <to the project's top level directory>
+.\virtualenv\Scripts\activate.bat
+pyinstaller gnews.spec
+----
+
+== Run Binary
+
+. Execute the binary 
+
+.Code Snippet (Linux & MacOS)
+[source]
+----
+./<path-to-binary>
+----
+
+.Code Snippet (Windows)
+[source]
+----
+.\<path-to-binary>
+----
