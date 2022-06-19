@@ -86,14 +86,14 @@ async def main():
         page_html = etree.HTML(webRequestTask.result()['html'])
 
         linkDict = {
-            'world': page_html.xpath('//div[@aria-label="World"]/a[1]/@href'),
-            'us': page_html.xpath('//div[@aria-label="U.S."]/a[1]/@href'),
-            'business': page_html.xpath('//div[@aria-label="Business"]/a[1]/@href'),
-            'technolog': page_html.xpath('//div[@aria-label="Technology"]/a[1]/@href'),
-            'entertainment': page_html.xpath('//div[@aria-label="Entertainment"]/a[1]/@href'),
-            'sports': page_html.xpath('//div[@aria-label="Sports"]/a[1]/@href'),
-            'science': page_html.xpath('//div[@aria-label="Science"]/a[1]/@href'),
-            'health': page_html.xpath('//div[@aria-label="Health"]/a[1]/@href'),
+            'world': page_html.xpath('//a[@aria-label="World"]/@href'),
+            'us': page_html.xpath('//a[@aria-label="U.S."]/@href'),
+            'business': page_html.xpath('//a[@aria-label="Business"]/@href'),
+            'technology': page_html.xpath('//a[@aria-label="Technology"]/@href'),
+            'entertainment': page_html.xpath('//a[@aria-label="Entertainment"]/@href'),
+            'sports': page_html.xpath('//a[@aria-label="Sports"]/@href'),
+            'science': page_html.xpath('//a[@aria-label="Science"]/@href'),
+            'health': page_html.xpath('//a[@aria-label="Health"]/@href'),
         }
 
         urlTasks = []
